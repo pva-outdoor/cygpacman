@@ -103,24 +103,7 @@ int trans_release(void)
 
 int needs_root(void)
 {
-	if(config->sysroot) {
-		return 1;
-	}
-	switch(config->op) {
-		case PM_OP_DATABASE:
-			return !config->op_q_check;
-		case PM_OP_UPGRADE:
-		case PM_OP_REMOVE:
-			return !config->print;
-		case PM_OP_SYNC:
-			return (config->op_s_clean || config->op_s_sync ||
-					(!config->group && !config->op_s_info && !config->op_q_list &&
-					 !config->op_s_search && !config->print));
-		case PM_OP_FILES:
-			return config->op_s_sync;
-		default:
-			return 0;
-	}
+	return 0;
 }
 
 int check_syncdbs(size_t need_repos, int check_valid)
